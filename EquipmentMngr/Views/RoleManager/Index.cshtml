@@ -1,0 +1,56 @@
+﻿@model List<Microsoft.AspNetCore.Identity.IdentityRole>
+@{
+    ViewData["Title"] = "Role Manager";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-lg-12">
+    <div class="ibox">
+        <div class="ibox-title">
+            <h5>Example with fullscreen option</h5>
+            <div class="ibox-tools">
+                <a class="collapse-link">
+                    <i class="fa fa-chevron-up"></i>
+                </a>
+                <a class="fullscreen-link">
+                    <i class="fa fa-expand"></i>
+                </a>
+                <a class="close-link">
+                    <i class="fa fa-times"></i>
+                </a>
+            </div>
+        </div>
+        <div class="ibox-content">
+            @*//ContentStart*@
+            <form method="post" asp-action="AddRole" asp-controller="RoleManager">
+                <div class="input-group">
+                    <input name="roleName" class="form-control w-25">
+                    <span class="input-group-btn">
+                        <button class="btn btn-primary">Add New Role</button>
+                    </span>
+                </div>
+            </form>
+
+            <table class="table table-striped">
+                <thead>
+                <tr>
+
+                    <th>Id</th>
+                    <th>Role</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var role in Model)
+                {
+                    <tr>
+                        <td>@role.Id</td>
+                        <td>@role.Name</td>
+                    </tr>
+                }
+
+                </tbody>
+            </table>
+            @*//ContentEnd*@
+        </div>
+    </div>
+</div>

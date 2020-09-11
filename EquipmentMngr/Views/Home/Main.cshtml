@@ -1,0 +1,151 @@
+﻿@{
+    ViewBag.Title = "Dashboard";
+}
+
+<div class="d-flex flex-column" id="content-wrapper">
+    <div class="row">
+        <!-- Equipment Widget-->
+        <div class="col-md-12 col-xl-4 mb-4">
+            <div class="card shadow border-left-primary py-2">
+                <div class="card-body">
+                    <div class="row align-items-center no-gutters">
+                        <div class="col mr-2">
+                            <div class="text-uppercase text-primary font-weight-bold text-xs mb-1">
+                                <span>Current Equipment</span>
+                            </div>
+                            <div class="text-dark font-weight-bold h5 mb-0">
+                                <span class="text-primary">698 @ViewData["EquipmentCount"]</span>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fa fa-server fa-3x text-primary-300" style="color: maroon"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Assignments Widget-->
+        <div class="col-md-12 col-xl-4 mb-4">
+            <div class="card shadow border-left-primary py-2">
+                <div class="card-body">
+                    <div class="row align-items-center no-gutters">
+                        <div class="col mr-2">
+                            <div class="text-uppercase text-primary font-weight-bold text-xs mb-1">
+                                <span>Current Assignments</span>
+                            </div>
+                            <div class="text-dark font-weight-bold h5 mb-0">
+                                <span class="text-primary">698 @ViewData["EquipmentCount"]</span>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fa fa-address-card fa-3x text-primary-300" style="color: maroon"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Repairs Widget-->
+        <div class="col-md-12 col-xl-4 mb-4">
+            <div class="card shadow border-left-primary py-2">
+                <div class="card-body">
+                    <div class="row align-items-center no-gutters">
+                        <div class="col mr-2">
+                            <div class="text-uppercase text-primary font-weight-bold text-xs mb-1">
+                                <span class="text-primary">Current Repairs</span>
+                            </div>
+                            <div class="text-dark font-weight-bold h5 mb-0">
+                                <span class="text-primary">12 @ViewData["AssignmentCount"]</span>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fa fa-wrench fa-3x text-info-300" style="color: maroon"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- New Stop-->
+<div class="row">
+    <!-- Laptops Widget-->
+    <div class="col-md-6 col-xl-3 mb-4">
+        <div class="card shadow border-left-warning py-2">
+            <div class="card-body">
+                <div class="row align-items-center no-gutters">
+                    <div class="col mr-2">
+                        <div class="text-uppercase  font-weight-bold text-xs mb-1">
+                            <span>Laptops</span>
+                        </div>
+                        <div class="text-dark font-weight-bold h5 mb-0">
+                            <span>14/186</span>
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fa fa-laptop fa-3x text-primary-300" style="color: #fab816"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Desktops Widget-->
+    <div class="col-md-6 col-xl-3 mb-4">
+        <div class="card shadow border-left-warning py-2">
+            <div class="card-body">
+                <div class="row align-items-center no-gutters">
+                    <div class="col mr-2">
+                        <div class="text-uppercase text-primary font-weight-bold text-xs mb-1">
+                            <span>Desktops</span>
+                        </div>
+                        <div class="text-dark font-weight-bold h5 mb-0">
+                            <span>4/200 @ViewData["EquipmentCount"]</span>
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fa fa-desktop fa-3x text-primary-300" style="color: #fab816"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- MacBooks Widget-->
+    <div class="col-md-6 col-xl-3 mb-4">
+        <div class="card shadow border-left-warning py-2">
+            <div class="card-body">
+                <div class="row align-items-center no-gutters">
+                    <div class="col mr-2">
+                        <div class="text-uppercase text-primary font-weight-bold text-xs mb-1">
+                            <span class="text-secondary">MacBooks</span>
+                        </div>
+                        <div class="text-dark font-weight-bold h5 mb-0">
+                            <span>19/219 @ViewData["AssignmentCount"]</span>
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fa fa-laptop fa-3x text-primary-300" style="color: #fab816"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- iPads Widget-->
+    <div class="col-md-6 col-xl-3 mb-4">
+        <div class="card shadow border-left-warning py-2">
+            <div class="card-body">
+                <div class="row align-items-center no-gutters">
+                    <div class="col mr-2">
+                        <div class="text-uppercase text-primary font-weight-bold text-xs mb-1">
+                            <span>iPads</span>
+                        </div>
+                        <div class="text-dark font-weight-bold h5 mb-0">
+                            <span>23/168 @ViewData["AssignmentCount"]</span>
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fa fa-tablet fa-3x text-primary-300" style="color: #fab816"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
