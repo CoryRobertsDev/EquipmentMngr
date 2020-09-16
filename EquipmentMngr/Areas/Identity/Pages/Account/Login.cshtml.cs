@@ -29,26 +29,25 @@ namespace EquipmentMngr.Areas.Identity.Pages.Account
             _logger = logger;
         }
 
-        [BindProperty]
-        public InputModel Input { get; set; }
+        [BindProperty] public InputModel Input { get; set; }
 
         public IList<AuthenticationScheme> ExternalLogins { get; set; }
 
         public string ReturnUrl { get; set; }
 
-        [TempData]
-        public string ErrorMessage { get; set; }
+        [TempData] public string ErrorMessage { get; set; }
 
         public class InputModel
         {
             [Required]
             [Display(Name = "Email / Username")]
             public string Email { get; set; }
+
             [Required]
             [DataType(DataType.Password)]
             public string Password { get; set; }
-            [Display(Name = "Remember me?")]
-            public bool RememberMe { get; set; }
+
+            [Display(Name = "Remember me?")] public bool RememberMe { get; set; }
         }
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
@@ -63,22 +62,20 @@ namespace EquipmentMngr.Areas.Identity.Pages.Account
                 if (IsValidEmail(Input.Email))
                 {
                     var user = await _userManager.FindByEmailAsync(Input.Email);
-                    if (user != null)
-                    {
-                        userName = user.UserName;
-                    }
+                    if (user != null) userName = user.UserName;
                 }
-                var result = await _signInManager.PasswordSignInAsync(userName, Input.Password, Input.RememberMe, lockoutOnFailure: false);
+
+                var result =
+                    await _signInManager.PasswordSignInAsync(userName, Input.Password, Input.RememberMe, false);
 
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
                     return LocalRedirect(returnUrl);
                 }
+
                 if (result.RequiresTwoFactor)
-                {
-                    return RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, Input.RememberMe });
-                }
+                    return RedirectToPage("./LoginWith2fa", new {ReturnUrl = returnUrl, Input.RememberMe});
                 if (result.IsLockedOut)
                 {
                     _logger.LogWarning("User account locked out.");
@@ -94,11 +91,12 @@ namespace EquipmentMngr.Areas.Identity.Pages.Account
             // If we got this far, something failed, redisplay form
             return Page();
         }
+
         public bool IsValidEmail(string emailaddress)
         {
             try
             {
-                MailAddress m = new MailAddress(emailaddress);
+                var m = new MailAddress(emailaddress);
 
                 return true;
             }

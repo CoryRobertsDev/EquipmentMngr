@@ -1,0 +1,94 @@
+﻿@model EquipmentMngr.Data.Entities.Assignment
+
+@{
+    ViewData["Action"] = "Details";
+    ViewData["Title"] = "Assignment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-lg-12">
+    <div class="ibox">
+        <div class="ibox-title">
+            <h5>@ViewBag.Title @ViewBag.Action</h5>
+            <div class="ibox-tools">
+                <a class="collapse-link">
+                    <i class="fa fa-chevron-up"></i>
+                </a>
+                <a class="fullscreen-link">
+                    <i class="fa fa-expand"></i>
+                </a>
+                <a class="close-link">
+                    <i class="fa fa-times"></i>
+                </a>
+            </div>
+        </div>
+        <div class="ibox-content">
+            <dl class="row">
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.ColleagueId)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.ColleagueId)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.EquipmentId)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.EquipmentId)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.RoomNumber)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.RoomNumber)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Location)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Location.Name)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Department)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Department.Name)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Employee)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Employee.Id)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.CreatedByUser)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.CreatedByUser)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.CreatedDate)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.CreatedDate)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.ModifiedByUser)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.ModifiedByUser)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.ModifiedDate)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.ModifiedDate)
+                </dd>
+            </dl>
+        </div>
+        <div>
+            <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+            <a asp-action="Index">Back to List</a>
+        </div>
+    </div>
+</div>

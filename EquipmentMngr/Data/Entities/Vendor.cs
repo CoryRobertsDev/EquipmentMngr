@@ -2,18 +2,16 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using EquipmentMngr.Models;
 
 namespace EquipmentMngr.Data.Entities
 {
-    public class Vendor : Infrastructure.Repositories.IAuditable
+    public class Vendor : Entity
     {
         [Key] public int Id { get; set; }
         [Required] [StringLength(100)] public string Name { get; set; }
-        [Display(Name = "Created By")] public string CreatedBy { get; set; }
-        [Display(Name = "Created On")] public DateTime? CreatedOn { get; set; }
-        [Display(Name = "Updated By")] public string UpdatedBy { get; set; }
-        [Display(Name = "Updated On By")] public DateTime? UpdatedOn { get; set; }
-        [InverseProperty("Vendor")] public virtual ICollection<EquipmentMngr.Data.Entities.Equipment> Equipment { get; set; } = new HashSet<EquipmentMngr.Data.Entities.Equipment>();
 
+        [InverseProperty("Vendor")]
+        public virtual ICollection<Equipment> Equipment { get; set; } = new HashSet<Equipment>();
     }
 }

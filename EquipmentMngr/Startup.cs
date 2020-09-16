@@ -1,5 +1,6 @@
 using EquipmentMngr.Data;
-using EquipmentMngr.Data.Entities;
+using EquipmentMngr.Helpers;
+using EquipmentMngr.Infrastructure.Services;
 using EquipmentMngr.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -26,7 +27,8 @@ namespace EquipmentMngr
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultUI()
@@ -46,11 +48,11 @@ namespace EquipmentMngr
             services.AddBreadcrumbs(GetType().Assembly, options =>
             {
                 // Testing
-                options.DontLookForDefaultNode = true;
+                options.DontLookForDefaultNode = false;
             });
-        
 
-    }
+            services.AddTransient<ICurrentUserService, CurrentUserService>();
+        }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -66,10 +68,13 @@ namespace EquipmentMngr
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
             using (var scope =
                 app.ApplicationServices.CreateScope())
             using (var context = scope.ServiceProvider.GetService<ApplicationDbContext>())
+            {
                 context.Database.Migrate();
+            }
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
@@ -82,8 +87,8 @@ namespace EquipmentMngr
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    "default",
+                    "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
         }

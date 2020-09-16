@@ -1,13 +1,17 @@
-﻿using EquipmentMngr.Models;
+﻿using System;
+using System.Collections.Generic;
+using EquipmentMngr.Models;
 using Microsoft.AspNetCore.Identity;
 using System.Linq;
 using System.Threading.Tasks;
+using EquipmentMngr.Data.Entities;
 
 namespace EquipmentMngr.Data
 {
     public static class ContextSeed
     {
-        public static async Task SeedRolesAsync(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
+        public static async Task SeedRolesAsync(UserManager<ApplicationUser> userManager,
+            RoleManager<IdentityRole> roleManager)
         {
             //Seed Roles
             await roleManager.CreateAsync(new IdentityRole(Enums.Roles.SuperAdmin.ToString()));
@@ -15,7 +19,9 @@ namespace EquipmentMngr.Data
             await roleManager.CreateAsync(new IdentityRole(Enums.Roles.Moderator.ToString()));
             await roleManager.CreateAsync(new IdentityRole(Enums.Roles.Basic.ToString()));
         }
-        public static async Task SeedSuperAdminAsync(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
+
+        public static async Task SeedSuperAdminAsync(UserManager<ApplicationUser> userManager,
+            RoleManager<IdentityRole> roleManager)
         {
             //Seed Default User
             var defaultUser = new ApplicationUser
@@ -38,8 +44,8 @@ namespace EquipmentMngr.Data
                     await userManager.AddToRoleAsync(defaultUser, Enums.Roles.Admin.ToString());
                     await userManager.AddToRoleAsync(defaultUser, Enums.Roles.SuperAdmin.ToString());
                 }
-
             }
         }
     }
 }
+

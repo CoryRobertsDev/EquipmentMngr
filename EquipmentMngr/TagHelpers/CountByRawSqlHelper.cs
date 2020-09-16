@@ -23,7 +23,7 @@ namespace EquipmentManager.Helpers
                     using var command = connection.CreateCommand();
                     command.CommandText = sql;
 
-                    foreach (KeyValuePair<string, object> parameter in parameters)
+                    foreach (var parameter in parameters)
                         command.Parameters.AddWithValue(parameter.Key, parameter.Value);
 
                     using DbDataReader dataReader = command.ExecuteReader();

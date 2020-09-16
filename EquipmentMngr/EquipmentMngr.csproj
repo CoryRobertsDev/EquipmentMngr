@@ -1,10 +1,21 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20200911134645_InitalCommit.cs" />
+    <Compile Remove="Migrations\20200911134645_InitalCommit.Designer.cs" />
+    <Compile Remove="Migrations\20200911134756_InitalCommit.cs" />
+    <Compile Remove="Migrations\20200911134756_InitalCommit.Designer.cs" />
+    <Compile Remove="Migrations\20200915022332_Seeds.cs" />
+    <Compile Remove="Migrations\20200915022332_Seeds.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="bundleconfig.json" />
     <Content Remove="compilerconfig.json" />
     <Content Remove="Views\UserRoles\NotFound.cshtml" />
   </ItemGroup>
@@ -14,17 +25,61 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\.editorconfig" Link=".editorconfig" />
+    <None Include="bundleconfig.json" />
     <None Include="compilerconfig.json" />
     <None Include="Views\RoleManager\Index.cshtml" />
     <None Include="Views\UserRoles\Index.cshtml" />
     <None Include="Views\UserRoles\NotFound.cshtml" />
     <None Include="Views\UserRoles\Manage.cshtml" />
+    <None Include="wwwroot\lib\dataTables\dataTables.bootstrap4.min.js" />
+    <None Include="wwwroot\lib\dataTables\datatables.min.js" />
+    <None Include="wwwroot\lib\sweetalert\.editorconfig" />
+    <None Include="wwwroot\lib\sweetalert\.gitignore" />
+    <None Include="wwwroot\lib\sweetalert\.jshintrc" />
+    <None Include="wwwroot\lib\sweetalert\.travis.yml" />
+    <None Include="wwwroot\lib\sweetalert\dev\gulpfile-wrap-template.js" />
+    <None Include="wwwroot\lib\sweetalert\dev\modules\default-params.js" />
+    <None Include="wwwroot\lib\sweetalert\dev\modules\handle-click.js" />
+    <None Include="wwwroot\lib\sweetalert\dev\modules\handle-dom.js" />
+    <None Include="wwwroot\lib\sweetalert\dev\modules\handle-key.js" />
+    <None Include="wwwroot\lib\sweetalert\dev\modules\handle-swal-dom.js" />
+    <None Include="wwwroot\lib\sweetalert\dev\modules\injected-html.js" />
+    <None Include="wwwroot\lib\sweetalert\dev\modules\set-params.js" />
+    <None Include="wwwroot\lib\sweetalert\dev\modules\utils.js" />
+    <None Include="wwwroot\lib\sweetalert\dev\sweetalert.es6.js" />
+    <None Include="wwwroot\lib\sweetalert\dev\sweetalert.scss" />
+    <None Include="wwwroot\lib\sweetalert\dist\sweetalert-dev.js" />
+    <None Include="wwwroot\lib\sweetalert\dist\sweetalert.min.js" />
+    <None Include="wwwroot\lib\sweetalert\example\example.scss" />
+    <None Include="wwwroot\lib\sweetalert\example\images\te-logo-small.svg" />
+    <None Include="wwwroot\lib\sweetalert\gulpfile.js" />
+    <None Include="wwwroot\lib\sweetalert\lib\modules\default-params.js" />
+    <None Include="wwwroot\lib\sweetalert\lib\modules\handle-click.js" />
+    <None Include="wwwroot\lib\sweetalert\lib\modules\handle-dom.js" />
+    <None Include="wwwroot\lib\sweetalert\lib\modules\handle-key.js" />
+    <None Include="wwwroot\lib\sweetalert\lib\modules\handle-swal-dom.js" />
+    <None Include="wwwroot\lib\sweetalert\lib\modules\injected-html.js" />
+    <None Include="wwwroot\lib\sweetalert\lib\modules\set-params.js" />
+    <None Include="wwwroot\lib\sweetalert\lib\modules\utils.js" />
+    <None Include="wwwroot\lib\sweetalert\lib\sweetalert.js" />
+    <None Include="wwwroot\lib\sweetalert\LICENSE" />
+    <None Include="wwwroot\lib\sweetalert\README.md" />
+    <None Include="wwwroot\lib\sweetalert\test\tests.js" />
+    <None Include="wwwroot\lib\sweetalert\themes\facebook\facebook.scss" />
+    <None Include="wwwroot\lib\sweetalert\themes\google\google.scss" />
+    <None Include="wwwroot\lib\sweetalert\themes\twitter\twitter.scss" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="ErikEJ.EntityFrameworkCore.DgmlBuilder" Version="3.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.8" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.8">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="3.1.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.8">
@@ -32,10 +87,36 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
+    <PackageReference Include="PostSharp.Patterns.Diagnostics" Version="6.7.7-preview" />
+    <PackageReference Include="Serilog" Version="2.10.0" />
+    <PackageReference Include="Serilog.AspNetCore" Version="3.4.0" />
+    <PackageReference Include="Serilog.Sinks.Console" Version="3.1.1" />
+    <PackageReference Include="Serilog.Sinks.File" Version="4.1.0" />
     <PackageReference Include="SmartBreadcrumbs" Version="3.5.1" />
     <PackageReference Include="SweetAlert" Version="1.0.0" />
+    <PackageReference Include="System.Diagnostics.Tools" Version="4.3.0" />
   </ItemGroup>
 
-  <ProjectExtensions><VisualStudio><UserProperties compilerconfig_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
+  <ItemGroup>
+    <Folder Include="logs\" />
+  </ItemGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties /></VisualStudio></ProjectExtensions>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <TypeScriptTarget>ES5</TypeScriptTarget>
+    <TypeScriptJSXEmit>React</TypeScriptJSXEmit>
+    <TypeScriptModuleKind />
+    <TypeScriptCompileOnSaveEnabled>True</TypeScriptCompileOnSaveEnabled>
+    <TypeScriptNoImplicitAny>False</TypeScriptNoImplicitAny>
+    <TypeScriptRemoveComments>False</TypeScriptRemoveComments>
+    <TypeScriptOutFile />
+    <TypeScriptOutDir />
+    <TypeScriptGeneratesDeclarations>False</TypeScriptGeneratesDeclarations>
+    <TypeScriptNoEmitOnError>True</TypeScriptNoEmitOnError>
+    <TypeScriptSourceMap>True</TypeScriptSourceMap>
+    <TypeScriptMapRoot />
+    <TypeScriptSourceRoot />
+  </PropertyGroup>
 
 </Project>

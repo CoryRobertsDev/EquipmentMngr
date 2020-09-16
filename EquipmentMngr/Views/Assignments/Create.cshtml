@@ -1,0 +1,77 @@
+﻿@model EquipmentMngr.Data.Entities.Assignment
+
+@{
+    ViewData["Action"] = "Create";
+    ViewData["Title"] = "Assignment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-lg-12">
+    <div class="ibox">
+        <div class="ibox-title">
+            <h5>@ViewBag.Action @ViewBag.Title</h5>
+            <div class="ibox-tools">
+                <a class="collapse-link">
+                    <i class="fa fa-chevron-up"></i>
+                </a>
+                <a class="fullscreen-link">
+                    <i class="fa fa-expand"></i>
+                </a>
+                <a class="close-link">
+                    <i class="fa fa-times"></i>
+                </a>
+            </div>
+        </div>
+        <div class="ibox-content">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-row col-lg-12">
+                    <div class="form-group col-lg-4">
+                        <label asp-for="ColleagueId" class="control-label"></label>
+                        <input asp-for="ColleagueId" class="form-control" />
+                        <span asp-validation-for="ColleagueId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-lg-4">
+                        <label asp-for="EquipmentId" class="control-label"></label>
+                        <input asp-for="EquipmentId" class="form-control" />
+                        <span asp-validation-for="EquipmentId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-lg-4">
+                        <label asp-for="RoomNumber" class="control-label"></label>
+                        <input asp-for="RoomNumber" class="form-control" />
+                        <span asp-validation-for="RoomNumber" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-row col-lg-12">
+                    <div class="form-group col-lg-4">
+                        <label asp-for="DepartmentId" class="control-label"></label>
+                        <select asp-for="DepartmentId" class="form-control" asp-items="ViewBag.DepartmentId">
+                            <option value="">--- Select One ---</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-lg-4">
+                        <label asp-for="LocationId" class="control-label"></label>
+                        <select asp-for="LocationId" class="form-control" asp-items="ViewBag.LocationId">
+                            <option value="">--- Select One ---</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-lg-4">
+                        <label asp-for="EmployeeId" class="control-label"></label>
+                        <select asp-for="EmployeeId" class="form-control" asp-items="ViewBag.EmployeeId">
+                            <option value="">--- Select One ---</option>
+                        </select>
+                    </div>
+                </div>
+                <row class="form-row">
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+                    </div>
+                </row>
+            </form>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

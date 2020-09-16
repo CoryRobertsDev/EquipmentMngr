@@ -15,8 +15,8 @@
     "popper.js": "^1.16.1"
   },
   "scripts": {
-    "bootstrap-js": "webpack --mode production --progress --profile --config webpack.bootstrap.js",
     "bootstrap-css": "node-sass --output-style compressed client/css/bootstrap.scss wwwroot/css/bootstrap.min.css",
+    "bootstrap-js": "webpack --mode production --progress --profile --config webpack.bootstrap.js",
     "bundles": "npm run bootstrap-js && npm run boostrap-css"
   }
 }

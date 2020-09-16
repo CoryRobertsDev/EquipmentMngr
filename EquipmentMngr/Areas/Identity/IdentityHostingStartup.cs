@@ -2,14 +2,14 @@
 using Microsoft.AspNetCore.Hosting;
 
 [assembly: HostingStartup(typeof(IdentityHostingStartup))]
+
 namespace EquipmentMngr.Areas.Identity
 {
     public class IdentityHostingStartup : IHostingStartup
     {
         public void Configure(IWebHostBuilder builder)
         {
-            builder.ConfigureServices((context, services) => {
-            });
+            builder.ConfigureServices((context, services) => { });
         }
     }
 }

@@ -2,9 +2,9 @@
 {
     public enum Roles
     {
+        Basic,
         SuperAdmin,
         Admin,
-        Moderator,
-        Basic,
+        Moderator
     }
 }

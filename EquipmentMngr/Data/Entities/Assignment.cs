@@ -1,61 +1,46 @@
-﻿using System;
+﻿using EquipmentMngr.Models;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using EquipmentMngr.Infrastructure.Repositories;
 
 namespace EquipmentMngr.Data.Entities
 {
-    public class Assignment : IAuditable
+    public class Assignment : Entity
     {
-        [Display(Name = "Assignment Id")]
-        public int AssignmentId { get; set; }
+        [Key] public int Id { get; set; }
 
-        [Display(Name = "Colleague Id")]
         public string ColleagueId { get; set; }
+        
+        [Display(Name = "Equipment Id")] public int EquipmentId { get; set; }
 
-        [Display(Name = "Equipment Id")]
-        public int EquipmentId { get; set; }
-
-        [Display(Name = "Room Num.")]
-        public int RoomNumber { get; set; }
+        [Display(Name = "Room Num.")] public int RoomNumber { get; set; }
+        
 
         [ForeignKey(nameof(DepartmentId))]
-        [InverseProperty("Assignment")]
+        [InverseProperty("Assignments")]
         public int DepartmentId { get; set; }
 
         [ForeignKey(nameof(LocationId))]
-        [InverseProperty("Assignment")]
+        [InverseProperty("Assignments")]
         public int LocationId { get; set; }
 
-        public bool? Unassigned { get; set; }
-
-        [Timestamp]
-        [Display(Name="Date Unassigned")]
-        public byte[] RowVersion { get; set; } 
-
-        //IAuditable Fields
-        public string CreatedBy { get; set; }
-        public DateTime? CreatedOn { get; set; }
-        public string UpdatedBy { get; set; }
-        public DateTime? UpdatedOn { get; set; }
+        [ForeignKey(nameof(EmployeeId))]
+        [InverseProperty("Assignments")]
+        public int EmployeeId { get; set; }
+        public Equipment Status { get; set; }
 
         //Navigation Properties
+
         public virtual Location Location { get; set; }
         public virtual Department Department { get; set; }
         public virtual Employee Employee { get; set; }
-
     }
-
-
-
-
 }
 
 //[Table("Assignment")]
 //public partial class Assignment
 //{
 //[Key] public int Id { get; set; }
-
 
 
 //public int LocationId { get; set; }
@@ -95,4 +80,3 @@ namespace EquipmentMngr.Data.Entities
 
 //public ICollection<Equipment> Equipment { get; set; }
 //public virtual view_ColleagueNames AssignmentId { get; set; }
-

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using EquipmentMngr.Models;
+using EquipmentMngr.Models.ViewModels;
 using SmartBreadcrumbs.Attributes;
 
 namespace EquipmentMngr.Controllers
@@ -24,7 +25,8 @@ namespace EquipmentMngr.Controllers
         {
             return View();
         }
-        [Breadcrumb("DashBoard")]
+
+        [Breadcrumb("Dashboard")]
         public IActionResult Main()
         {
             return View();
@@ -39,7 +41,7 @@ namespace EquipmentMngr.Controllers
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View(new ErrorViewModel {RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier});
         }
     }
 }

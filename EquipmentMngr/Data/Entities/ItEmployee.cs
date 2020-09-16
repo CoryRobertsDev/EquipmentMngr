@@ -1,16 +1,15 @@
-﻿
-namespace EquipmentMngr.Data.Entities
-{
-    public class ItEmployee
+﻿//namespace EquipmentMngr.Data.Entities
+//{
+//    public class ItEmployee
 
-    {
-        public int Id { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string FullName { get; set; }
-        public string Email { get; set; }
-        public string ColleagueId { get; set; }
+//    {
+//        public int Id { get; set; }
+//        public string FirstName { get; set; }
+//        public string LastName { get; set; }
+//        public string FullName { get; set; }
+//        public string Email { get; set; }
+//        public string ColleagueId { get; set; }
 
-    }
-}
+//    }
+//}
 

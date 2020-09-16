@@ -1,0 +1,69 @@
+﻿{
+   "ContextClassName": "UC_INVENTORYContext",
+   "ContextNamespace": null,
+   "DefaultDacpacSchema": null,
+   "FilterSchemas": false,
+   "IncludeConnectionString": false,
+   "ModelNamespace": null,
+   "OutputContextPath": "logs",
+   "OutputPath": "logs",
+   "ProjectRootNamespace": "EquipmentMngr",
+   "Schemas": null,
+   "SelectedHandlebarsLanguage": 0,
+   "SelectedToBeGenerated": 0,
+   "Tables": [
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[Assignments]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[Departments]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[Employees]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[Equipment]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[EquipmentTypes]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[Locations]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[Manufacturers]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[Repair]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[States]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[Vendors]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[view_AssignmentsDetail]"
+      }
+   ],
+   "UseDatabaseNames": false,
+   "UseDbContextSplitting": false,
+   "UseFluentApiOnly": false,
+   "UseHandleBars": false,
+   "UseInflector": false,
+   "UseLegacyPluralizer": false,
+   "UseNodaTime": false,
+   "UseSpatial": false,
+   "UseStoredProcedures": false
+}

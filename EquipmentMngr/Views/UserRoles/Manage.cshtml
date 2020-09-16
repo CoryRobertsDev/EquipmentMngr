@@ -1,33 +1,54 @@
-﻿@model List<EquipmentMngr.Models.ManageUserRolesViewModel>
+﻿@model List<EquipmentMngr.Models.ViewModels.ManageUserRolesViewModel>
 @{
-    ViewData["Title"] = "Manage";
+    ViewData["Action"] = "Index";
+    ViewData["Title"] = "User Roles";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<form method="post">
-    <div class="card">
-        <div class="card-header">
-            <h2>Manage User Roles</h2>
-            Add/Remove Roles for User / @ViewBag.UserName.
+<div class="col-lg-12">
+    <div class="ibox">
+        <div class="ibox-title">
+            <h5>Manage User Roles</h5>
+            <div class="ibox-tools">
+                <a class="collapse-link">
+                    <i class="fa fa-chevron-up"></i>
+                </a>
+                <a class="fullscreen-link">
+                    <i class="fa fa-expand"></i>
+                </a>
+                <a class="close-link">
+                    <i class="fa fa-times"></i>
+                </a>
+            </div>
         </div>
-        <div class="card-body">
-            @for (int i = 0; i < Model.Count; i++)
-            {
-                <div class="form-check m-1">
-                    <input type="hidden" asp-for="@Model[i].RoleId" />
-                    <input type="hidden" asp-for="@Model[i].RoleName" />
-                    <input asp-for="@Model[i].Selected" class="form-check-input" />
-                    <label class="form-check-label" asp-for="@Model[i].Selected">
-                        @Model[i].RoleName
-                    </label>
+        <div class="ibox-content">
+            <form method="post">
+                <div class="card">
+                    <div class="card-header">
+                        Add/Remove Roles for User / @ViewBag.UserName.
+                    </div>
+                    <div class="card-body">
+                        @for (var i = 0; i < Model.Count; i++)
+                        {
+                            <div class="form-check m-1 primary">
+                                <input type="hidden" asp-for="@Model[i].RoleId" />
+                                <input type="hidden" asp-for="@Model[i].RoleName" />
+                                <input asp-for="@Model[i].Selected" class="form-check-input" />
+                                <label class="form-check-label" asp-for="@Model[i].Selected">
+                                    @Model[i].RoleName
+                                </label>
+                            </div>
+                        }
+                        <div asp-validation-summary="All" class="text-danger"></div>
+                    </div>
+                    <div class="card-footer">
+                        <input type="submit" value="Update" class="btn btn-primary"
+                               style="width: auto" />
+                        <a asp-controller="UserRoles" asp-action="Index" class="btn btn-primary" style="width: auto">
+                            Cancel
+                        </a>
+                    </div>
                 </div>
-            }
-            <div asp-validation-summary="All" class="text-danger"></div>
-        </div>
-        <div class="card-footer">
-            <input type="submit" value="Update" class="btn btn-primary"
-                   style="width:auto" />
-            <a asp-action="EditUser" asp-route-id="@ViewBag.userId"
-               class="btn btn-primary" style="width:auto">Cancel</a>
+            </form>
         </div>
     </div>
-</form>
+</div>

@@ -1,10 +1,11 @@
-﻿using System;
+﻿using EquipmentMngr.Models;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EquipmentMngr.Data.Entities
 {
-    public class Employee : Infrastructure.Repositories.IAuditable
+    public class Employee : Entity
     {
         [Key] public int Id { get; set; }
         [Display(Name = "Name")] public string Name => $"{FirstName} {LastName}";
@@ -12,11 +13,6 @@ namespace EquipmentMngr.Data.Entities
         [Display(Name = "Last Name")] public string LastName { get; set; }
         [Display(Name = "Email")] public string Email { get; set; }
         public string ColleagueId { get; set; }
-        [Display(Name = "Created By")] public string CreatedBy { get; set; }
-        [Display(Name = "Created On")] public DateTime? CreatedOn { get; set; }
-        [Display(Name = "Updated By")] public string UpdatedBy { get; set; }
-        [Display(Name = "Updated On By")] public DateTime? UpdatedOn { get; set; }
         public virtual ICollection<Assignment> Assignment { get; set; } = new HashSet<Assignment>();
-
     }
 }
