@@ -5,105 +5,175 @@
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 {
-<nav class="navbar-default navbar-static-side" role="navigation">
-    <div class="sidebar-collapse">
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <nav class="navbar-default navbar-static-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav metismenu" id="side-menu">
+                <li class="nav-header">
+                    <div class="dropdown profile-element">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            @*<span>  <img style="width:75px;height:75px; object-fit:cover; border-radius:30px" src="data:image/*;base64,@(Convert.ToBase64String(UserManager.GetUserAsync(User).Result.ProfilePicture))"></span>*@
+
+                            <span class="block m-t-xs font-bold"> @UserManager.GetUserName(User)</span>
+                            <span class="text-muted text-xs block">Options <b class="caret"></b></span>
+                        </a>
+                        <ul class="dropdown-menu animated fadeInRight m-t-xs" style="left: 0px; position: absolute; top: 91px; will-change: top, left;">
+                            <li>
+                                <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Profile">Profile</a>
+                            </li>
+                            <li>
+                                <form id="logoutForm" class="nav-link text-dark" title="Logout" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new {area = ""})">Logout</form>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="logo-element">
+                        UC-IT
+                    </div>
+                </li>
+                <!--Main Start-->
+                <li class="@Html.IsSelected("Home", "Main")">
+                    <a href="@Url.Action("Main", "Home")">
+                        <i class="fa fa-diamond"></i> <span class="nav-label">Main</span> @*<span class="label label-primary float-right">Main</span>*@
+                    </a>
+                </li>
+                <!--Main End-->
+                <!--Equipment Start-->
+                <li class="@Html.IsSelected("Equipment", "Index")">
+                    <a href="@Url.Action("Index", "Equipment")">
+                        <i class="fa fa-server"></i> <span class="nav-label">Equipment</span>
+                    </a>
+                </li>
+                <!--Equipment End-->
+                <!--Assigments Start-->
+                <li class="@Html.IsSelected("Assignments", "Index")">
+                    <a href="@Url.Action("Index", "Assignments")">
+                        <i class="fa fa-address-card"></i> <span class="nav-label">Assignments</span>
+                    </a>
+                </li>
+                <!--Assignments End-->
+                <!--Repairs Start-->
+                <li class="@Html.IsSelected("Repairs", "Index")">
+                    <a href="@Url.Action("Index", "Repairs")">
+                        <i class="fa fa-wrench"></i> <span class="nav-label">Repairs</span>
+                    </a>
+                </li>
+                <!--Repairs End-->
+                <!--Locations Start-->
+                <li class="@Html.IsSelected("Locations", "Index")">
+                    <a href="@Url.Action("Index", "Locations")">
+                        <i class="fa fa-globe"></i> <span class="nav-label">Locations</span>
+                    </a>
+                </li>
+                <!--Locations End-->
+                <!--RoleManager Start-->
+                <li class="@Html.IsSelected("RoleManager", "Index")">
+                    <a href="@Url.Action("Index", "RoleManager")">
+                        <i class="fa fa-user-secret"></i> <span class="nav-label">Role Manager</span>
+                    </a>
+                </li>
+                <!--RoleManager End-->
+                <!--Departments Start-->
+                <li class="@Html.IsSelected("Departments", "Index")">
+                    <a href="@Url.Action("Index", "Departments")">
+                        <i class="fa fa-graduation-cap"></i> <span class="nav-label">Departments</span>
+                    </a>
+                </li>
+                <!--Departments Start-->
+                <!--EquipmenetType Start-->
+                <li class="@Html.IsSelected("EquipmentTypes", "Index")">
+                    <a href="@Url.Action("Index", "EquipmentTypes")">
+                        <i class="fa fa-user-secret"></i> <span class="nav-label">Equipment Types</span>
+                    </a>
+                </li>
+                <!--EquipmenetType End-->
+                <!--Vendors Start-->
+                <li class="@Html.IsSelected("Vendors", "Index")">
+                    <a href="@Url.Action("Index", "Vendors")">
+                        <i class="fa fa-user-secret"></i> <span class="nav-label">Vendors</span>
+                    </a>
+                </li>
+                <!--Vendors End-->
+                <!--Manufacturers Start-->
+                <li class="@Html.IsSelected("Manufacturers", "Index")">
+                    <a href="@Url.Action("Index", "Manufacturers")">
+                        <i class="fa fa-user-secret"></i> <span class="nav-label">Manufacturers</span>
+                    </a>
+                </li>
+                <!--Manufacturers Ened-->
+                <!--States Start-->
+                <li class="@Html.IsSelected("States", "Index")">
+                    <a href="@Url.Action("Index", "States")">
+                        <i class="fa fa-user-secret"></i> <span class="nav-label">States</span>
+                    </a>
+                </li>
+                <!--States End-->
+                <!--Employee Start-->
+                <li class="@Html.IsSelected("Employees", "Index")">
+                    <a href="@Url.Action("Index", "Employees")">
+                        <i class="fa fa-user-secret"></i> <span class="nav-label">Employees</span>
+                    </a>
+                </li>
+                <!--Employee End-->
+                <!--UserRoles Start-->
+                <li class="@Html.IsSelected("UserRoles")">
+                    <a href="@Url.Action("", "UserRoles")">
+                        <i class="fa fa-user-circle"></i> <span class="nav-label" data-i18n="nav.UserRoles">UserRoles</span><span class="fa arrow"></span>
+                    </a>
+                    <ul class="nav nav-second-level collapse @Html.IsSelected("UserRoles", cssClass: "in")">
+                        <li class="@Html.IsSelected("UserRoles", "Index")">
+                            <a href="@Url.Action("Index", "UserRoles")">
+                                <i class="fa fa-user-times"> User Roles</i>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <!--UserRoles End-->
+                <!--AssignmentsDetails Start-->
+                <li class="@Html.IsSelected("AssignmentsDetails")">
+                    <a href="@Url.Action("", "AssignmentsDetails")">
+                        <i class="fa fa-user-circle"></i> <span class="nav-label" data-i18n="nav.UserRoles">Assignments</span><span class="fa arrow"></span>
+                    </a>
+                    <ul class="nav nav-second-level collapse @Html.IsSelected("Assignments", cssClass: "in")">
+                        <li class="@Html.IsSelected("AssignmentsDetails", "Index")">
+                            <a href="@Url.Action("Index", "AssignmentsDetails")">
+                                <i class="fa fa-user-times">Active</i>
+                            </a>
+                        </li>
+                        <li class="@Html.IsSelected("AssignmentsDetails", "Active")">
+                            <a href="@Url.Action("Active", "AssignmentsDetails")">
+                                <i class="fa fa-user-times">Active</i>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <!--AssignmentsDetails End-->
+            </ul>
+        </div>
+    </nav>
+}
+else
+{
+    <nav class="navbar-default navbar-static-side" role="navigation">
+        <div class="sidebar-collapse">
         <ul class="nav metismenu" id="side-menu">
             <li class="nav-header">
                 <div class="dropdown profile-element">
-                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                        <span>  <img style="width:75px;height:75px; object-fit:cover; border-radius:30px" src="data:image/*;base64,@(Convert.ToBase64String(UserManager.GetUserAsync(User).Result.ProfilePicture))"></span>
-
-                        <span class="block m-t-xs font-bold"> @UserManager.GetUserName(User)</span>
-                        <span class="text-muted text-xs block">Options <b class="caret"></b></span>
-                    </a>
-                    <ul class="dropdown-menu animated fadeInRight m-t-xs" style="left: 0px; position: absolute; top: 91px; will-change: top, left;">
-                        <li>
-                            <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Profile">Profile</a>
-                        </li>
-                        <li>
-                            <form id="logoutForm" class="nav-link text-dark" title="Logout"asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new {area = ""})">Logout</form>
-                        </li>
-                    </ul>
-                </div>
-                <div class="logo-element">
-                    UC-IT
+                    <div class="logo-element">
+                        UC-IT
+                    </div>
                 </div>
             </li>
+            <!--Main Start-->
             <li class="@Html.IsSelected("Home", "Main")">
                 <a href="@Url.Action("Main", "Home")">
-                    <i class="fa fa-diamond"></i> <span class="nav-label">Main</span> <span class="label label-primary float-right">Main</span>
+                    <i class="fa fa-diamond"></i> <span class="nav-label">Main</span> @*<span class="label label-primary float-right">Main</span>*@
                 </a>
             </li>
-            <li class="@Html.IsSelected("Equipment", "Equipment")">
-                <a href="@Url.Action("Index", "Equipment")">
-                    <i class="fa fa-server"></i> <span class="nav-label">Equipment</span>
-                </a>
-            </li>
-            <li class="@Html.IsSelected("Assignments", "Assignments")">
-                <a href="@Url.Action("Index", "Assignments")">
-                    <i class="fa fa-address-card"></i> <span class="nav-label">Assignments</span>
-                </a>
-            </li>
-            <li class="@Html.IsSelected("Repairs", "Minor")">
-                <a href="@Url.Action("Index", "Repairs")">
-                    <i class="fa fa-wrench"></i> <span class="nav-label">Repairs</span>
-                </a>
-            </li>
-            <li class="@Html.IsSelected("Locations", "Index")">
-                <a href="@Url.Action("Index", "Locations")">
-                    <i class="fa fa-globe"></i> <span class="nav-label">Locations</span>
-                </a>
-            </li>
-            <li class="@Html.IsSelected("RoleManager", "Index")">
-                <a href="@Url.Action("Index", "RoleManager")">
-                    <i class="fa fa-user-secret"></i> <span class="nav-label">Role Manager</span>
-                </a>
-            </li>
-            <li class="@Html.IsSelected("Departments", "Index")">
-                <a href="@Url.Action("Index", "Departments")">
-                    <i class="fa fa-graduation-cap"></i> <span class="nav-label">Departments</span>
-                </a>
-            </li>
-            <li class="@Html.IsSelected("EquipmentTypes", "Index")">
-                <a href="@Url.Action("Index", "EquipmentTypes")">
-                    <i class="fa fa-user-secret"></i> <span class="nav-label">Equipment Types</span>
-                </a>
-            </li>
-            <li class="@Html.IsSelected("Vendors", "Index")">
-                <a href="@Url.Action("Index", "Vendors")">
-                    <i class="fa fa-user-secret"></i> <span class="nav-label">Vendors</span>
-                </a>
-            </li>
-            <li class="@Html.IsSelected("Manufacturers", "Index")">
-                <a href="@Url.Action("Index", "Manufacturers")">
-                    <i class="fa fa-user-secret"></i> <span class="nav-label">Manufacturers</span>
-                </a>
-            </li>
-            <li class="@Html.IsSelected("States", "Index")">
-                <a href="@Url.Action("Index", "States")">
-                    <i class="fa fa-user-secret"></i> <span class="nav-label">States</span>
-                </a>
-            </li>
-            <li class="@Html.IsSelected("Employees", "Index")">
-                <a href="@Url.Action("Index", "Employees")">
-                    <i class="fa fa-user-secret"></i> <span class="nav-label">Employees</span>
-                </a>
-            </li>
-            <!--Location Start-->
-            <li class="@Html.IsSelected("UserRoles")">
-                <a href="@Url.Action("", "UserRoles")">
-                    <i class="fa fa-user-circle"></i> <span class="nav-label" data-i18n="nav.UserRoles">UserRoles</span><span class="fa arrow"></span>
-                </a>
-                <ul class="nav nav-second-level collapse @Html.IsSelected("UserRoles", cssClass: "in")">
-                    <li class="@Html.IsSelected("UserRoles", "Index")">
-                        <a href="@Url.Action("Index", "UserRoles")">
-                            <i class="fa fa-user-times"> User Roles</i>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <!--Location End-->
-
+            <!--Main End-->
         </ul>
-    </div>
-</nav>
+        </div>
+    </nav>
+
+}

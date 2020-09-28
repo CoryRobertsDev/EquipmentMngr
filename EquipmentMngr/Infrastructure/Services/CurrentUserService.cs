@@ -1,5 +1,5 @@
 ﻿using System;
-using EquipmentMngr.Helpers;
+using EquipmentMngr.Infrastructure.Services.Interfaces;
 using Microsoft.AspNetCore.Http;
 
 namespace EquipmentMngr.Infrastructure.Services

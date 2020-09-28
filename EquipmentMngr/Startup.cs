@@ -1,6 +1,7 @@
 using EquipmentMngr.Data;
 using EquipmentMngr.Helpers;
 using EquipmentMngr.Infrastructure.Services;
+using EquipmentMngr.Infrastructure.Services.Interfaces;
 using EquipmentMngr.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;

@@ -24,6 +24,7 @@ namespace EquipmentMngr.Controllers
         [Breadcrumb("Assignments")]
         public async Task<IActionResult> Index()
         {
+
             var applicationDbContext = _context.Assignments.Include(a => a.Department).Include(a => a.Employee).Include(a => a.Location);
             return View(await applicationDbContext.ToListAsync());
         }

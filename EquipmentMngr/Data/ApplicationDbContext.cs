@@ -4,11 +4,12 @@ using EquipmentMngr.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using PostSharp.Patterns.Diagnostics;
-using PostSharp.Extensibility;
+using EquipmentMngr.Infrastructure.Services.Interfaces;
+
 
 namespace EquipmentMngr.Data
 {
@@ -16,15 +17,11 @@ namespace EquipmentMngr.Data
     {
         private readonly ICurrentUserService _currentUserService;
 
-        [Log]
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options,
             ICurrentUserService currentUserService)
-            : base(options)
-        {
+            : base(options) =>
             this._currentUserService = currentUserService ?? throw new ArgumentNullException(nameof(currentUserService));
-        }
 
-  
 
         public DbSet<Assignment> Assignments { get; set; }
         public DbSet<Department> Departments { get; set; }
@@ -35,7 +32,7 @@ namespace EquipmentMngr.Data
         public DbSet<EquipmentType> EquipmentTypes { get; set; }
         public DbSet<State> States { get; set; }
         public DbSet<Employee> Employees { get; set; }
-        public DbSet<ViewAssignmentsDetail> AssignmentDetails { get; set; }
+        public DbSet<AssignmentsDetail> AssignmentsDetails { get; set; }
         public DbSet<Status> Status { get; set; }
         public DbSet<Repair> Repairs { get; set; }
 
@@ -54,6 +51,7 @@ namespace EquipmentMngr.Data
                 .Where(e => e.State == EntityState.Added && e.Entity is Entity))
             {
                 var entidad = item.Entity as Entity;
+                if (entidad == null) continue;
                 entidad.CreatedDate = currentTime;
                 entidad.CreatedByUser = _currentUserService.GetCurrentUsername();
                 entidad.ModifiedDate = currentTime;
@@ -64,6 +62,7 @@ namespace EquipmentMngr.Data
                 .Where(e => e.State == EntityState.Modified && e.Entity is Entity))
             {
                 var entidad = item.Entity as Entity;
+                if (entidad == null) continue;
                 entidad.ModifiedDate = currentTime;
                 entidad.ModifiedByUser = _currentUserService.GetCurrentUsername();
                 item.Property(nameof(entidad.CreatedDate)).IsModified = false;
@@ -115,17 +114,16 @@ namespace EquipmentMngr.Data
 
           });
 
-            modelBuilder.Entity<ViewAssignmentsDetail>(entity =>
+            modelBuilder.Entity<AssignmentsDetail>(entity =>
             {
-                entity.HasNoKey();
+                entity.HasKey("ColleagueId");
 
                 entity.ToView("view_AssignmentsDetail");
 
-                entity.Property(e => e.FirstName).IsUnicode(false);
-
-                entity.Property(e => e.LastName).IsUnicode(false);
             });
         }
+
+        public DbSet<EquipmentMngr.Data.Entities.AssignmentsDetail> AssignmentsDetail { get; set; }
 
     }
 

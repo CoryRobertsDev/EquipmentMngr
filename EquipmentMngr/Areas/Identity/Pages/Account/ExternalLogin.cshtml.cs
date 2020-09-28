@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Security.Claims;
 using System.Text;
 using System.Text.Encodings.Web;
@@ -65,7 +62,7 @@ namespace EquipmentMngr.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnGetCallbackAsync(string returnUrl = null, string remoteError = null)
         {
-            returnUrl = returnUrl ?? Url.Content("~/");
+            returnUrl ??= Url.Content("~/");
             if (remoteError != null)
             {
                 ErrorMessage = $"Error from external provider: {remoteError}";
@@ -93,23 +90,21 @@ namespace EquipmentMngr.Areas.Identity.Pages.Account
             {
                 return RedirectToPage("./Lockout");
             }
-            else
-            {
-                // If the user does not have an account, then ask the user to create an account.
-                ReturnUrl = returnUrl;
-                ProviderDisplayName = info.ProviderDisplayName;
-                if (info.Principal.HasClaim(c => c.Type == ClaimTypes.Email))
-                    Input = new InputModel
-                    {
-                        Email = info.Principal.FindFirstValue(ClaimTypes.Email)
-                    };
-                return Page();
-            }
+
+            // If the user does not have an account, then ask the user to create an account.
+            ReturnUrl = returnUrl;
+            ProviderDisplayName = info.ProviderDisplayName;
+            if (info.Principal.HasClaim(c => c.Type == ClaimTypes.Email))
+                Input = new InputModel
+                {
+                    Email = info.Principal.FindFirstValue(ClaimTypes.Email)
+                };
+            return Page();
         }
 
         public async Task<IActionResult> OnPostConfirmationAsync(string returnUrl = null)
         {
-            returnUrl = returnUrl ?? Url.Content("~/");
+            returnUrl ??= Url.Content("~/");
             // Get the information about the user from the external login provider
             var info = await _signInManager.GetExternalLoginInfoAsync();
             if (info == null)
@@ -136,7 +131,7 @@ namespace EquipmentMngr.Areas.Identity.Pages.Account
                         var callbackUrl = Url.Page(
                             "/Account/ConfirmEmail",
                             null,
-                            new {area = "Identity", userId = userId, code = code},
+                            new {area = "Identity", userId, code},
                             Request.Scheme);
 
                         await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
@@ -144,7 +139,7 @@ namespace EquipmentMngr.Areas.Identity.Pages.Account
 
                         // If account confirmation is required, we need to show the link if we don't have a real email sender
                         if (_userManager.Options.SignIn.RequireConfirmedAccount)
-                            return RedirectToPage("./RegisterConfirmation", new {Email = Input.Email});
+                            return RedirectToPage("./RegisterConfirmation", new {Input.Email});
 
                         await _signInManager.SignInAsync(user, false, info.LoginProvider);
 

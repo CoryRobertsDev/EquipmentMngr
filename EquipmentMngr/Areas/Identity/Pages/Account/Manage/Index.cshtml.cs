@@ -1,5 +1,4 @@
 ﻿using EquipmentMngr.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -133,7 +132,7 @@ namespace EquipmentMngr.Areas.Identity.Pages.Account.Manage
             if (Request.Form.Files.Count > 0)
             {
                 var file = Request.Form.Files.FirstOrDefault();
-                using (var dataStream = new MemoryStream())
+                await using (var dataStream = new MemoryStream())
                 {
                     await file.CopyToAsync(dataStream);
                     user.ProfilePicture = dataStream.ToArray();

@@ -62,6 +62,7 @@ html {
 }
 
 .footer {
+  padding-top: 10px;
   bottom: 0;
   position: absolute;
   white-space: nowrap;

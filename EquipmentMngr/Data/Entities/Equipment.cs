@@ -14,6 +14,8 @@ namespace EquipmentMngr.Data.Entities
         public int VendorId { get; set; } 
         public int ManufacturerId { get; set; }
         [Required] public string Model { get; set; }
+
+        [DisplayFormat(NullDisplayText = "N/A")]
         public string SubModel { get; set; }
         [Required] public string SerialNum { get; set; }
         [Required] public string ServiceTag { get; set; }

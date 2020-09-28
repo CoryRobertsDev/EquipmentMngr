@@ -3,6 +3,8 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
+    <AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
+    <OutputType>Exe</OutputType>
   </PropertyGroup>
 
   <ItemGroup>
@@ -18,10 +20,6 @@
     <Content Remove="bundleconfig.json" />
     <Content Remove="compilerconfig.json" />
     <Content Remove="Views\UserRoles\NotFound.cshtml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <_ContentIncludedByDefault Remove="wwwroot\css\custom.css" />
   </ItemGroup>
 
   <ItemGroup>
@@ -87,7 +85,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
-    <PackageReference Include="PostSharp.Patterns.Diagnostics" Version="6.7.7-preview" />
+    <PackageReference Include="NEST" Version="7.9.0" />
     <PackageReference Include="Serilog" Version="2.10.0" />
     <PackageReference Include="Serilog.AspNetCore" Version="3.4.0" />
     <PackageReference Include="Serilog.Sinks.Console" Version="3.1.1" />
@@ -98,7 +96,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Data\Services\Interfaces\" />
     <Folder Include="logs\" />
+    <Folder Include="wwwroot\images\NewFolder\" />
   </ItemGroup>
 
   <ProjectExtensions><VisualStudio><UserProperties /></VisualStudio></ProjectExtensions>

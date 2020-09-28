@@ -13,6 +13,6 @@ namespace EquipmentMngr.Data.Entities
         [Display(Name = "Last Name")] public string LastName { get; set; }
         [Display(Name = "Email")] public string Email { get; set; }
         public string ColleagueId { get; set; }
-        public virtual ICollection<Assignment> Assignment { get; set; } = new HashSet<Assignment>();
+        public virtual ICollection<Assignment> Assignment { get; set; } = new List<Assignment>();
     }
 }

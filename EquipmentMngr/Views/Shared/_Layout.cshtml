@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>@ViewData["Title"] - .NET Core 3.0</title>
+    <title>@ViewData["Title"]</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <!-- Add local styles, mostly for plugins css file -->
@@ -15,20 +15,14 @@
 
     <environment names="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css"/>
-        <link rel="stylesheet" href="~/css/custom.scss"/>
         <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.css"/>
         <link rel="stylesheet" href="~/css/animate.css"/>
-        <link rel="stylesheet" href="~/css/custom.scss"/>
         <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
-        <link rel="stylesheet" href="~/css/style.css" asp-append-version="true"/>
-
-
         <link rel="stylesheet" href="~/css/style.css" asp-append-version="true"/>
     </environment>
     <environment names="Staging,Production">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-theme.min.css"/>
-
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.min.css"/>
         <link rel="stylesheet" href="~/css/animate.css"/>
         <link rel="stylesheet" href="~/css/style.css" asp-append-version="true"/>
@@ -73,9 +67,6 @@
     <script src="~/lib/slimScroll/jquery.slimscroll.js"></script>
     <script src="~/lib/pace/pace.js"></script>
     <script src="~/js/script.js" asp-append-version="true"></script>
-
-    <!-- Only for demo purpose -->
-    <script src="~/js/skin.config.js"></script>
 </environment>
 <environment names="Staging,Production">
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
@@ -87,6 +78,6 @@
     <script src="~/js/script.js" asp-append-version="true"></script>
 </environment>
 
-@RenderSection("scripts", false)
+@await RenderSectionAsync("scripts", false)
 </body>
 </html>

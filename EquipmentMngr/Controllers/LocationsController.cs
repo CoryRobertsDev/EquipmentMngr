@@ -40,14 +40,11 @@ namespace EquipmentMngr.Controllers
         public async Task<IActionResult> Create([Bind("Id,Name,CreatedByUser,CreatedDate,ModifiedByUser,ModifiedDate")]
             Location location)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(location);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
+            if (!ModelState.IsValid) return View(location);
+            _context.Add(location);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
 
-            return View(location);
         }
 
         // GET: Locations/Edit/5
@@ -72,25 +69,22 @@ namespace EquipmentMngr.Controllers
         {
             if (id != location.Id) return NotFound();
 
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid) return View(location);
+            try
             {
-                try
-                {
-                    _context.Update(location);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!LocationExists(location.Id))
-                        return NotFound();
-                    else
-                        throw;
-                }
-
-                return RedirectToAction(nameof(Index));
+                _context.Update(location);
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!LocationExists(location.Id))
+                    return NotFound();
+                else
+                    throw;
             }
 
-            return View(location);
+            return RedirectToAction(nameof(Index));
+
         }
 
 
