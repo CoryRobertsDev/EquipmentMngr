@@ -12,4 +12,5 @@ namespace EquipmentMngr.TagHelpers
                 selectedValue);
         }
     }
+
 }

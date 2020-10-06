@@ -46,5 +46,7 @@ namespace EquipmentMngr.Data.ValueObjects.Base
                 .Select(x => x != null ? x.GetHashCode() : 0)
                 .Aggregate((x, y) => x ^ y);
         }
+
+         
     }
 }

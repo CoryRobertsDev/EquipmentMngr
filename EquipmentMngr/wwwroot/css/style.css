@@ -884,7 +884,7 @@ body.mini-navbar .navbar-default .nav > li > .nav-second-level li a {
 .navbar-default .special_link a span.label {
   background: #fff;
   color: #8b2346 !important;
-  ;
+  
 }
 
 .navbar-default .landing_link a {
@@ -1105,13 +1105,15 @@ body.canvas-menu.mini-navbar nav.navbar-static-side {
 .top-navigation #page-wrapper { width: 100%; }
 
 .top-navigation .navbar-nav .dropdown-menu > .active > a {
-  background: white;
+  background: #33F3F4;
   color: #8b2346;
   font-weight: bold;
 }
 
-.white-bg .navbar-fixed-top,
-.white-bg .navbar-static-top { background: #fff; }
+.navbar-fixed-top,
+.navbar-static-top {
+  background: #F3F3F4;
+}
 
 .top-navigation .navbar { margin-bottom: 0; }
 
@@ -1301,23 +1303,23 @@ button:focus { outline: 0 !important; }
 .btn-success:hover,
 .btn-success:focus,
 .btn-success.focus {
-  background-color: #1a7bb9;
-  border-color: #1a7bb9;
+  background-color: #8b2346;
+  border-color: #8b2346;
   color: #fff;
 }
 
 .btn-success.disabled,
 .btn-success:disabled {
-  background-color: #1a7bb9;
-  border-color: #1a7bb9;
+  background-color: #8b2346;
+  border-color: #8b2346;
   color: #fff;
 }
 
 .btn-success:not(:disabled):not(.disabled):active,
 .btn-success:not(:disabled):not(.disabled).active,
 .show > .btn-success.dropdown-toggle {
-  background-color: #1a7bb9;
-  border-color: #1a7bb9;
+  background-color: #8b2346;
+  border-color: #8b2346;
   color: #fff;
 }
 
@@ -1612,9 +1614,13 @@ button.btn-info.dim { box-shadow: inset 0 0 0 #7d1f3f, 0 5px 0 0 #7d1f3f, 0 10px
 
 button.btn-info.dim:active { box-shadow: inset 0 0 0 #7d1f3f, 0 2px 0 0 #7d1f3f, 0 5px 3px #999999 !important; }
 
-button.btn-success.dim { box-shadow: inset 0 0 0 #1872ab, 0 5px 0 0 #1872ab, 0 10px 5px #999999 !important; }
+button.btn-success.dim {
+  box-shadow: inset 0 0 0 #8b2346, 0 5px 0 0 #8b2346, 0 10px 5px #999999 !important;
+}
 
-button.btn-success.dim:active { box-shadow: inset 0 0 0 #1872ab, 0 2px 0 0 #1872ab, 0 5px 3px #999999 !important; }
+  button.btn-success.dim:active {
+    box-shadow: inset 0 0 0 #8b2346, 0 2px 0 0 #8b2346, 0 5px 3px #999999 !important;
+  }
 
 button.btn-danger.dim { box-shadow: inset 0 0 0 #ea394c, 0 5px 0 0 #ea394c, 0 10px 5px #999999 !important; }
 

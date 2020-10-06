@@ -6,27 +6,46 @@
 
 
 <div class="row border-bottom">
-    <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0">
+    <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
         <div class="navbar-header">
             <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#">
                 <i class="fa fa-bars"></i>
             </a>
             <form role="search" class="navbar-form-custom" method="post" action="">
                 <div class="form-group">
-                    <input type="text" placeholder="Search for something..." class="form-control" name="top-search" id="top-search">
+                    <input type="text" placeholder="Search for something..." class="form-control" name="top-search" id="top-search"> <button type="submit" name="search" id="search-btn" class="btn btn-flat">
+                    </button>
                 </div>
             </form>
         </div>
         <ul class="nav navbar-top-links navbar-right">
             @if (SignInManager.IsSignedIn(User))
             {
-                <li class="nav-item">
-                    <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello, @UserManager.GetUserName(User)!</a>
-                </li>
-                <li class="nav-item">
-                    <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new {area = ""})">
-                        <button id="logout" type="submit" class="nav-link btn btn-link text-dark"><i class="fa fa-sign-out"></i>Logout</button>
-                    </form>
+                @*<li class="nav-item">
+                        <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello, @UserManager.GetUserName(User)!</a>
+                    </li>*@
+                <!--<li class="nav-item">-->
+                <!---BEGIN User Account Menu--->
+
+
+                <li class="dropdown user user-menu">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <img src="data:image/*;base64,@Convert.ToBase64String((await UserManager.GetUserAsync(User).ConfigureAwait(false)).ProfilePicture)" class="img-sm rounded" alt="profile image">
+                        <span class="hidden-xs">@UserManager.GetUserName(User)</span>
+                    </a>
+                    <ul class="dropdown-menu animated fadeInRight m-t-xs" style="left: 0px; position: absolute; top: 91px; will-change: top, left;">
+                        <li>
+                            <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Profile">Profile</a>
+                        </li>
+                        <li>
+                            <form id="logoutForm" class="nav-link text-dark" title="Logout" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new {area = ""})">Logout</form>
+                        </li>
+                        <li class="nav-link text-dark">
+                        <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action(" Index", "Home" )">
+                            <button id="logout" type="submit" class="nav-link btn btn-link text-dark"><i class="fa fa-sign-out"></i>Logout</button>
+                        </form>
+                    </li>
+                    </ul>
                 </li>
             }
             else

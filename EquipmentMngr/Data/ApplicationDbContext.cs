@@ -1,14 +1,13 @@
 ﻿using EquipmentMngr.Data.Entities;
-using EquipmentMngr.Helpers;
+using EquipmentMngr.Infrastructure.Services.Interfaces;
 using EquipmentMngr.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using EquipmentMngr.Infrastructure.Services.Interfaces;
 
 
 namespace EquipmentMngr.Data
@@ -32,7 +31,7 @@ namespace EquipmentMngr.Data
         public DbSet<EquipmentType> EquipmentTypes { get; set; }
         public DbSet<State> States { get; set; }
         public DbSet<Employee> Employees { get; set; }
-        public DbSet<AssignmentsDetail> AssignmentsDetails { get; set; }
+        //public DbSet<AssignmentDetail> AssignmentDetails { get; set; }
         public DbSet<Status> Status { get; set; }
         public DbSet<Repair> Repairs { get; set; }
 
@@ -47,7 +46,7 @@ namespace EquipmentMngr.Data
         private void ProcessSave()
         {
             var currentTime = DateTimeOffset.UtcNow;
-            foreach (var item in ChangeTracker.Entries()
+            foreach (EntityEntry item in ChangeTracker.Entries()
                 .Where(e => e.State == EntityState.Added && e.Entity is Entity))
             {
                 var entidad = item.Entity as Entity;
@@ -61,7 +60,7 @@ namespace EquipmentMngr.Data
             foreach (var item in ChangeTracker.Entries()
                 .Where(e => e.State == EntityState.Modified && e.Entity is Entity))
             {
-                var entidad = item.Entity as Entity;
+                Entity entidad = item.Entity as Entity;
                 if (entidad == null) continue;
                 entidad.ModifiedDate = currentTime;
                 entidad.ModifiedByUser = _currentUserService.GetCurrentUsername();
@@ -114,16 +113,15 @@ namespace EquipmentMngr.Data
 
           });
 
-            modelBuilder.Entity<AssignmentsDetail>(entity =>
-            {
-                entity.HasKey("ColleagueId");
+            //modelBuilder.Entity<AssignmentsDetail>(entity =>
+            //{
+            //    entity.HasKey("ColleagueId");
 
-                entity.ToView("view_AssignmentsDetail");
+            //    entity.ToView("view_AssignmentsDetail");
 
-            });
+            //});
         }
 
-        public DbSet<EquipmentMngr.Data.Entities.AssignmentsDetail> AssignmentsDetail { get; set; }
 
     }
 

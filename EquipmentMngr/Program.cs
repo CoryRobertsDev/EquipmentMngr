@@ -25,8 +25,8 @@ namespace EquipmentMngr
                     var context = services.GetRequiredService<ApplicationDbContext>();
                     var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
                     var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
-                    await ContextSeed.SeedRolesAsync(userManager, roleManager);
-                    await ContextSeed.SeedSuperAdminAsync(userManager, roleManager);
+                    await ContextSeed.SeedRolesAsync(userManager, roleManager).ConfigureAwait(false);
+                    await ContextSeed.SeedSuperAdminAsync(userManager, roleManager).ConfigureAwait(false);
                 }
                 catch (Exception ex)
                 {
@@ -35,7 +35,7 @@ namespace EquipmentMngr
                 }
             }
 
-            await host.RunAsync();
+            await host.RunAsync().ConfigureAwait(true);
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args)

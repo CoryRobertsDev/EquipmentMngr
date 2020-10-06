@@ -10,4 +10,5 @@ namespace EquipmentMngr.Middleware
             return source == null || source.Contains(value);
         }
     }
+
 }

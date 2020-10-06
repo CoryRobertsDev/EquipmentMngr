@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using EquipmentMngr.Models;
+﻿using EquipmentMngr.Models;
 using Microsoft.AspNetCore.Identity;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
-using EquipmentMngr.Data.Entities;
 
 namespace EquipmentMngr.Data
 {
@@ -13,6 +11,7 @@ namespace EquipmentMngr.Data
         public static async Task SeedRolesAsync(UserManager<ApplicationUser> userManager,
             RoleManager<IdentityRole> roleManager)
         {
+            if (userManager == null) throw new ArgumentNullException(nameof(userManager));
             //Seed Roles
             await roleManager.CreateAsync(new IdentityRole(Enums.Roles.SuperAdmin.ToString()));
             await roleManager.CreateAsync(new IdentityRole(Enums.Roles.Admin.ToString()));
@@ -23,6 +22,8 @@ namespace EquipmentMngr.Data
         public static async Task SeedSuperAdminAsync(UserManager<ApplicationUser> userManager,
             RoleManager<IdentityRole> roleManager)
         {
+            if (userManager == null) throw new ArgumentNullException(nameof(userManager));
+            if (roleManager == null) throw new ArgumentNullException(nameof(roleManager));
             //Seed Default User
             var defaultUser = new ApplicationUser
             {

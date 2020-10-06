@@ -12,6 +12,14 @@ div.ibox-title {
   color: #FFFFFF;
 }
 
+.table {
+  table-layout: fixed;
+  text-overflow: ellipsis;
+}
+
+.table td {
+  text-overflow: ellipsis;
+}
 /* Provide sufficient contrast against white background */
 
 a { color: #8b2346; }

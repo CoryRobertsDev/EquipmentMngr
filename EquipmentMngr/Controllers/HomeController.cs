@@ -1,10 +1,17 @@
-﻿using EquipmentMngr.Models.ViewModels;
+﻿using System;
+using System.Collections.Generic;
+using EquipmentMngr.Data;
+using EquipmentMngr.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SmartBreadcrumbs.Attributes;
 using System.Diagnostics;
 using System.Linq;
-using EquipmentMngr.Data;
+using System.Threading.Tasks;
+using EquipmentMngr.Data.Entities;
+using EquipmentMngr.Enums;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore;
 
 namespace EquipmentMngr.Controllers
 {
@@ -19,40 +26,59 @@ namespace EquipmentMngr.Controllers
             _logger = logger;
         }
 
-        public IActionResult Welcome()
-        {
-            
-
-            return View();
-        }
         [DefaultBreadcrumb("Home")]
-        public IActionResult Index()
+        public async Task<IActionResult> Index(string id)
         {
-            
+            var assignments = from a in _context.Assignments
+                select a;
 
-            return View();
+            if (!String.IsNullOrEmpty(id))
+            {
+                assignments = assignments.Where(s => s.ColleagueId.Contains(id));
+            }
+
+            return View(await assignments.ToListAsync());
         }
 
         [Breadcrumb("Dashboard")]
-        public IActionResult Main()
+        [Authorize(Roles = "Basic, Admin, SuperAdmin")]
+        public IActionResult Main(string searchString)
         {
+            
+            var assignments = from m in _context.Assignments
+                select m;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                assignments = assignments.Where(s => s.ColleagueId.Contains(searchString));
+            }
+
+      
+
+            //var assignmentCount = _context.Assignments
+            //    .GroupBy(c => c.ColleagueId)
+            //    .Select(c => new
+            //    {
+            //        c.Key,
+            //        DistinctCount = c.Select(x => x.ColleagueId).Distinct().Count(),
+            //        assignmentCount = ViewData["AssignmentCount"]
+            ////    });
+
+            //ViewData["AssignmentCount"] = assignmentCount;
+
+            var assignmentCount1 = _context.Assignments.CountOrNull;
             ViewData["AssignmentCount"] = _context.Assignments.Count();
             ViewData["EquipmentCount"] = _context.Equipment.Count();
             ViewData["RepairCount"] = _context.Repairs.Count();
-
-            ViewData["MonitorCount"] = _context.Equipment.Count(e => e.EquipmentTypeId == '2');
-            ViewData["PcCount"] = _context.Equipment.Count(e => e.EquipmentTypeId == '6');
+            ViewData["MonitorCount"] = _context.Equipment.Count(e => e.EquipmentTypeId == '1');
+            ViewData["Keyboard"] = _context.Equipment.Count(e => e.EquipmentTypeId == '6');
             ViewData["LaptopCountTotal"] = _context.Equipment.Count(e => e.EquipmentTypeId == '2');
-            ViewData["LaptopCountUnassigned"] = _context.Equipment.Count(e => e.EquipmentTypeId == '2');
+            //ViewData["LaptopCountUnassigned"] = _context.Equipment.Count(e => e.EquipmentTypeId == '2');
 
             return View();
         }
 
-        [Breadcrumb("Privacy")]
-        public IActionResult Privacy()
-        {
-            return View();
-        }
+       
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

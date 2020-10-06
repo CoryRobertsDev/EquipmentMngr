@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
@@ -18,7 +17,7 @@ namespace EquipmentMngr.Middleware
             _next = next;
         }
 
-        public async Task Invoke(HttpContext httpContext)
+        public async Task InvokeAsync(HttpContext httpContext)
         {
             try
             {
@@ -30,7 +29,7 @@ namespace EquipmentMngr.Middleware
             }
         }
 
-        private static async Task HandleExceptionAsync(HttpContext context, Exception exception)
+        private static Task HandleExceptionAsync(HttpContext context, Exception exception)
         {
             object result;
 
@@ -55,15 +54,7 @@ namespace EquipmentMngr.Middleware
 
             context.Response.ContentType = "application/json"; // Will vary
             context.Response.StatusCode = code;
-            await context.Response.WriteAsync(JsonConvert.SerializeObject(result));
-        }
-    }
-
-    public static class HandleDbUpdateExceptionExtensions
-    {
-        public static IApplicationBuilder UseDbUpdateExceptionHandler(this IApplicationBuilder builder)
-        {
-            return builder.UseMiddleware<DbUpdateExceptionHandler>();
+            return context.Response.WriteAsync(JsonConvert.SerializeObject(result));
         }
     }
 }

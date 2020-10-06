@@ -1,12 +1,4 @@
-﻿/*
- *
- *   INSPINIA - Responsive Admin Theme
- *   version 2.9.3
- *
- */
-
-
-$(document).ready(function() {
+﻿$(document).ready(function() {
 
     // Fast fix bor position issue with Propper.js
     // Will be fixed in Bootstrap 4.1 - https://github.com/twbs/bootstrap/pull/24092
@@ -190,7 +182,7 @@ $(document).ready(function() {
 
         var body = $("body");
 
-        if (fixedsidebar == "on") {
+        if (fixedsidebar === "on") {
             body.addClass("fixed-sidebar");
             $(".sidebar-collapse").slimScroll({
                 height: "100%",
@@ -211,36 +203,20 @@ $(document).ready(function() {
             }
         }
 
-        if (fixednavbar == "on") {
+        if (fixednavbar === "on") {
             $(".navbar-static-top").removeClass("navbar-static-top").addClass("navbar-fixed-top");
             body.addClass("fixed-nav");
         }
 
-        if (boxedlayout == "on") {
+        if (boxedlayout === "on") {
             body.addClass("boxed-layout");
         }
 
-        if (fixedfooter == "on") {
+        if (fixedfooter === "on") {
             $(".footer").addClass("fixed");
         }
     }
 });
-
-// For demo purpose - animation css script
-function animationHover(element, animation) {
-    element = $(element);
-    element.hover(
-        function() {
-            element.addClass("animated " + animation);
-        },
-        function() {
-            //wait for animation to finish before removing classes
-            window.setTimeout(function() {
-                    element.removeClass("animated " + animation);
-                },
-                2000);
-        });
-}
 
 function SmoothlyMenu() {
     if (!$("body").hasClass("mini-navbar") || $("body").hasClass("body-small")) {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using Microsoft.Extensions.Logging;
+using Serilog;
 using Serilog.Debugging;
 using Serilog.Extensions.Logging;
 using ILogger = Serilog.ILogger;

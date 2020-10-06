@@ -6,30 +6,60 @@
 <div class="d-flex flex-column" id="content-wrapper">
     <div class="row">
         <!-- Equipment Widget Start-->
-        <div class="col-md-12 col-xl-4 mb-4">
-            <div class="card shadow border-left-primary py-2">
-                <a href="@Url.Action("Index", "Equipment")">
-                    <div class="card-body">
-                        <div class="row align-items-center no-gutters">
-                            <div class="col mr-2">
-                                <div class="text-uppercase text-primary font-weight-bold text-xs mb-1">
-                                    <span>Current Equipment</span>
-                                </div>
-                                <div class="text-dark font-weight-bold h5 mb-0">
-                                    <span class="text-primary">@ViewData["EquipmentCount"]</span>
-                                </div>
-                            </div>
-                            <div class="col-auto">
-                                <i class="fa fa-server fa-3x text-primary-300" style="color: maroon"></i>
-                            </div>
+        <div class="col-md-6 col-xl-3 mb-4">
+            <a href="@Url.Action("Index", "Equipment")">
+
+                <div class="widget style1 navy-bg shadow">
+                    <div class="row">
+                        <div class="col-4">
+                            <i class="fa fa-server fa-5x"></i>
+                        </div>
+                        <div class="col-8 text-right">
+                            <span class="bold"> Current Equipment </span>
+                            <h2 class="font-bold">@ViewData["EquipmentCount"]</h2>
                         </div>
                     </div>
-                </a>
-            </div>
+                </div>
+            </a>
         </div>
         <!-- Equipment Widget End-->
         <!-- Assignments Widget Start-->
-        <div class="col-md-12 col-xl-4 mb-4">
+        <div class="col-md-6 col-xl-3 mb-4">
+            <a href="@Url.Action("Index", "Assignments")">
+
+                <div class="widget style1 navy-bg">
+                    <div class="row">
+                        <div class="col-4">
+                            <i class="fa fa-address-card fa-5x"></i>
+                        </div>
+                        <div class="col-8 text-right">
+                            <span class="bold"> Current Assignments </span>
+                            <h2 class="font-bold">@ViewData["AssignmentCount"]</h2>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <!-- Assignments Widget Stop-->
+        <!-- Repairs Widget Start-->
+        <div class="col-md-6 col-xl-3 mb-4">
+            <a href="@Url.Action("Index", "Repairs")">
+
+                <div class="widget style1 navy-bg">
+                    <div class="row">
+                        <div class="col-4">
+                            <i class="fa fa-wrench fa-5x yellow"></i>
+                        </div>
+                        <div class="col-8 text-right">
+                            <span class="bold"> Current Assignments </span>
+                            <h2 class="font-bold">@ViewData["RepairsCount"]</h2>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <!-- Repairs Widget Stop-->
+        @*<div class="col-md-12 col-xl-4 mb-4">
             <div class="card shadow border-left-primary py-2">
                 <div class="card-body">
                     <div class="row align-items-center no-gutters">
@@ -47,10 +77,10 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>*@
         <!-- Assignments Widget End-->
         <!-- Repairs Widget Start-->
-        <div class="col-md-12 col-xl-4 mb-4">
+        <!--<div class="col-md-12 col-xl-4 mb-4">
             <div class="card shadow border-left-primary py-2">
                 <div class="card-body">
                     <div class="row align-items-center no-gutters">
@@ -68,93 +98,107 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>-->
         <!-- Repairs Widget End-->
     </div>
-</div>
-<div class="row">
-    <!-- Laptops Widget Start-->
-    <div class="col-md-6 col-xl-3 mb-4">
-        <div class="card shadow border-left-warning py-2">
-            <div class="card-body">
-                <div class="row align-items-center no-gutters">
-                    <div class="col mr-2">
-                        <div class="text-uppercase  font-weight-bold text-xs mb-1">
-                            <span>Laptops</span>
+    <div class="row">
+        <!-- Laptops Widget Start-->
+        <div class="col-md-6 col-xl-3 mb-4">
+            <div class="card shadow border-left-warning py-2">
+                <div class="card-body">
+                    <div class="row align-items-center no-gutters">
+                        <div class="col mr-2">
+                            <span class="label label-primary float-left text-xs">Available</span><br />
+                            <div class="text-uppercase font-weight-bold text-sm mb-1">
+                                <span>Laptops</span>
+                            </div>
+                            <div class="text-dark font-weight-bold h5 mb-0">
+                                <span>@ViewData["LaptopCountUnassigned"]/@ViewData["LaptopCountTotal"]</span>
+                            </div>
                         </div>
-                        <div class="text-dark font-weight-bold h5 mb-0">
-                            <span>@ViewData["LaptopCountUnassigned"]/@ViewData["LaptopCountTotal"]</span>
+                        <div class="col-auto">
+                            <i class="fa fa-laptop fa-3x text-primary-300" style="color: #fab816"></i>
                         </div>
-                    </div>
-                    <div class="col-auto">
-                        <i class="fa fa-laptop fa-3x text-primary-300" style="color: #fab816"></i>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- Laptops Widget End-->
-    <!-- Desktops Widget Start-->
-    <div class="col-md-6 col-xl-3 mb-4">
-        <div class="card shadow border-left-warning py-2">
-            <div class="card-body">
-                <div class="row align-items-center no-gutters">
-                    <div class="col mr-2">
-                        <div class="text-uppercase text-primary font-weight-bold text-xs mb-1">
-                            <span>Desktops</span>
+        <!-- Laptops Widget End-->
+        <!-- Desktops Widget Start-->
+        <div class="col-md-6 col-xl-3 mb-4">
+            <div class="card shadow border-left-warning py-2">
+                <div class="card-body">
+                    <div class="row align-items-center no-gutters">
+                        <div class="col mr-2">
+                            <div class="text-uppercase text-primary font-weight-bold text-xs mb-1">
+                                <span>Desktops</span>
+                            </div>
+                            <div class="text-dark font-weight-bold h5 mb-0">
+                                <span>4/200 @ViewData["EquipmentCount"]</span>
+                            </div>
                         </div>
-                        <div class="text-dark font-weight-bold h5 mb-0">
-                            <span>4/200 @ViewData["EquipmentCount"]</span>
+                        <div class="col-auto">
+                            <i class="fa fa-desktop fa-3x text-primary-300" style="color: #fab816"></i>
                         </div>
-                    </div>
-                    <div class="col-auto">
-                        <i class="fa fa-desktop fa-3x text-primary-300" style="color: #fab816"></i>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- Desktops Widget End-->
-    <!-- MacBooks Widget Start-->
-    <div class="col-md-6 col-xl-3 mb-4">
-        <div class="card shadow border-left-warning py-2">
-            <div class="card-body">
-                <div class="row align-items-center no-gutters">
-                    <div class="col mr-2">
-                        <div class="text-uppercase text-primary font-weight-bold text-xs mb-1">
-                            <span class="text-secondary">MacBooks</span>
+        <!-- Desktops Widget End-->
+        <!-- MacBooks Widget Start-->
+        <div class="col-md-6 col-xl-3 mb-4">
+            <div class="card shadow border-left-warning py-2">
+                <div class="card-body">
+                    <div class="row align-items-center no-gutters">
+                        <div class="col mr-2">
+                            <div class="text-uppercase text-primary font-weight-bold text-xs mb-1">
+                                <span class="text-secondary">MacBooks</span>
+                            </div>
+                            <div class="text-dark font-weight-bold h5 mb-0">
+                                <span>19/219 @ViewData["AssignmentCount"]</span>
+                            </div>
                         </div>
-                        <div class="text-dark font-weight-bold h5 mb-0">
-                            <span>19/219 @ViewData["AssignmentCount"]</span>
+                        <div class="col-auto">
+                            <i class="fa fa-laptop fa-3x text-primary-300" style="color: #fab816"></i>
                         </div>
-                    </div>
-                    <div class="col-auto">
-                        <i class="fa fa-laptop fa-3x text-primary-300" style="color: #fab816"></i>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- MacBooks Widget End-->
-    <!-- iPads Widget Start-->
-    <div class="col-md-6 col-xl-3 mb-4">
-        <div class="card shadow border-left-warning py-2">
-            <div class="card-body">
-                <div class="row align-items-center no-gutters">
-                    <div class="col mr-2">
-                        <div class="text-uppercase text-primary font-weight-bold text-xs mb-1">
-                            <span>iPads</span>
+        <!-- MacBooks Widget End-->
+        <!-- iPads Widget Start-->
+        <div class="col-md-6 col-xl-3 mb-4">
+            <div class="card shadow border-left-warning py-2">
+                <div class="card-body">
+                    <div class="row align-items-center no-gutters">
+                        <div class="col mr-2">
+                            <div class="text-uppercase text-primary font-weight-bold text-xs mb-1">
+                                <span>iPads</span>
+                            </div>
+                            <div class="text-dark font-weight-bold h5 mb-0">
+                                <span>23/168 @ViewData["AssignmentCount"]</span>
+                            </div>
                         </div>
-                        <div class="text-dark font-weight-bold h5 mb-0">
-                            <span>23/168 @ViewData["AssignmentCount"]</span>
+                        <div class="col-auto">
+                            <i class="fa fa-tablet fa-3x text-primary-300" style="color: #fab816"></i>
                         </div>
-                    </div>
-                    <div class="col-auto">
-                        <i class="fa fa-tablet fa-3x text-primary-300" style="color: #fab816"></i>
                     </div>
                 </div>
             </div>
         </div>
+        <!-- iPads Widget End-->
+        <div class="widget style1 navy-bg shadow border-left">
+            <div class="row align-items-center no-gutters">
+                <div class="col-3">
+                    <span>Current Equipment</span>
+                    <i class="fa fa-server fa-3x"></i>
+                </div>
+                <div class="col-9 text-right">
+                    <h2 class="font-bold">400</h2>
+                </div>
+            </div>
+        </div>
     </div>
-    <!-- iPads Widget End-->
+
+
 </div>

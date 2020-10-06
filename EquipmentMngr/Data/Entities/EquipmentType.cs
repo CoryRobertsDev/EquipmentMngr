@@ -1,9 +1,7 @@
-﻿using System;
+﻿using EquipmentMngr.Models;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using EquipmentMngr.Data.Entities.Base;
-using EquipmentMngr.Models;
 
 namespace EquipmentMngr.Data.Entities
 {
